@@ -19,7 +19,7 @@ public class SQLDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String SQLTable = "CREATE TABLE IF NOT EXISTS Users (" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "Username text not null," +
+                "Username TEXT not null," +
                 "Password TEXT not null" +
                 ")";
         sqLiteDatabase.execSQL(SQLTable);
