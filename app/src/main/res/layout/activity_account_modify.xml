@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layoutRegister"
+    android:id="@+id/layoutModify"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".AccountModifyActivity">
 
     <TextView
         android:id="@+id/modifyTitle"
@@ -15,7 +15,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="24dp"
         android:gravity="center"
-        android:text="LOGIN PAGE"
+        android:text="MODIFY ACCOUNT PAGE"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,76 +23,96 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/modifytextViewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Username:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modifyTitle" />
+
     <EditText
         android:id="@+id/modifyUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
-        android:hint="USERNAME HERE"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modifyTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/modifytextViewUsername" />
+
+    <TextView
+        android:id="@+id/modifytextViewPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Password:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modifyUsername" />
 
     <EditText
         android:id="@+id/modifyPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
-        android:hint="PASSWORD HERE (SHHH... )"
         android:inputType="textPassword"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modifyUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/modifytextViewPassword" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/modifyModifyButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="80dp"
-        android:text="login"
-        android:textSize="24dp"
+        android:layout_marginEnd="50dp"
+        android:text="modify"
+        android:onClick="actionPerformed"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/modifyPassword" />
 
     <Button
-        android:id="@+id/accountmainButton"
+        android:id="@+id/modifyDeleteButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="100dp"
-        android:backgroundTint="@color/design_default_color_error"
-        android:text="to account list"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="50dp"
+        android:text="delete"
+        android:onClick="actionPerformed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvToRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyModifyButton" />
 
-    <TextView
-        android:id="@+id/tvToRegister"
+    <Button
+        android:id="@+id/modifyBackToContentButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
-        android:gravity="center"
-        android:text="→REGISTER HERE!←"
-        android:textStyle="bold"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="50dp"
+        android:onClick="actionPerformed"
+        android:text="back to content list"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyDeleteButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

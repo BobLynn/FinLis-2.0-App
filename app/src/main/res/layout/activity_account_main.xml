@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountMainActivity">
+
+    <!--    嵌入activity_account_content的內容-->
+    <include layout="@layout/activity_account_content"/>
+
+    <!--    「+」號按鈕--> <!--        放置於底部、結尾（右下角）-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/accountAddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="25dp"
+        android:onClick="faToRegister"
+        app:backgroundTint="#B71C1C"
+        app:layout_anchorGravity="center"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+
+
+    <!--    編輯按鈕--> <!--        放置於底部（左下角）-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/modifyAccountButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="25dp"
+        app:layout_anchorGravity="center"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        android:onClick="faToLogin"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
