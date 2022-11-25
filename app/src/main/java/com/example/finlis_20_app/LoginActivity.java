@@ -6,14 +6,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.nio.charset.StandardCharsets;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -52,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 //        讀取資料庫資料
         SQLiteDatabase sqLiteDatabase;
-        sqLiteDatabase = new MyDatabaseHelper(this).getWritableDatabase();
+        sqLiteDatabase = new AccountDatabaseHelper(this).getWritableDatabase();
         Cursor readDatabase = sqLiteDatabase.rawQuery("SELECT * FROM accounts",null);
 
         switch (view.getId()){

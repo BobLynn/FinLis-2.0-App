@@ -56,11 +56,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void saveContact(){
-        SQLiteDatabase sqLiteDatabase = new MyDatabaseHelper(this).getWritableDatabase();
+        SQLiteDatabase sqLiteDatabase = new AccountDatabaseHelper(this).getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(MyDatabaseHelper.ACCOUNT_USERNAME, registerUsername.getText().toString());
-        values.put(MyDatabaseHelper.ACCOUNT_PASSWORD, registerPassword.getText().toString());
-        sqLiteDatabase.insert(MyDatabaseHelper.ACCOUNT_TABLE.toString(), null, values);
+        values.put(AccountDatabaseHelper.ACCOUNT_USERNAME, registerUsername.getText().toString());
+        values.put(AccountDatabaseHelper.ACCOUNT_PASSWORD, registerPassword.getText().toString());
+        sqLiteDatabase.insert(AccountDatabaseHelper.ACCOUNT_TABLE.toString(), null, values);
         sqLiteDatabase.close();
     }
 

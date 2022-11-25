@@ -35,14 +35,14 @@ public class AccountModifyActivity extends AppCompatActivity {
 
         switch (view.getId()){
             case R.id.modifyModifyButton:
-                sqLiteDatabase = new MyDatabaseHelper(this).getWritableDatabase();
+                sqLiteDatabase = new AccountDatabaseHelper(this).getWritableDatabase();
                 String sqlUpdate = "update " +
-                        MyDatabaseHelper.ACCOUNT_TABLE +
-                        " set " + MyDatabaseHelper.ACCOUNT_USERNAME +
+                        AccountDatabaseHelper.ACCOUNT_TABLE +
+                        " set " + AccountDatabaseHelper.ACCOUNT_USERNAME +
                         "='" + modifyUsername.getText().toString() + "', " +
-                        MyDatabaseHelper.ACCOUNT_PASSWORD + "='" +
+                        AccountDatabaseHelper.ACCOUNT_PASSWORD + "='" +
                         modifyPassword.getText().toString() +"' " +
-                        "where " + MyDatabaseHelper.ACCOUNT_ID +
+                        "where " + AccountDatabaseHelper.ACCOUNT_ID +
                         "=" + id;
                 sqLiteDatabase.execSQL(sqlUpdate);
                 sqLiteDatabase.close();
@@ -51,11 +51,11 @@ public class AccountModifyActivity extends AppCompatActivity {
                 break;
 
             case R.id.modifyDeleteButton:
-                sqLiteDatabase = new MyDatabaseHelper(this).getWritableDatabase();
+                sqLiteDatabase = new AccountDatabaseHelper(this).getWritableDatabase();
 
                 String sqlDelete = "delete from " +
-                        MyDatabaseHelper.ACCOUNT_TABLE +
-                        " where " + MyDatabaseHelper.ACCOUNT_ID + "=" +
+                        AccountDatabaseHelper.ACCOUNT_TABLE +
+                        " where " + AccountDatabaseHelper.ACCOUNT_ID + "=" +
                         id;
 
                 sqLiteDatabase.execSQL(sqlDelete);

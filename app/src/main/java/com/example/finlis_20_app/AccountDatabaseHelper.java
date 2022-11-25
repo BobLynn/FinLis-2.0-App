@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class MyDatabaseHelper extends SQLiteOpenHelper {
+public class AccountDatabaseHelper extends SQLiteOpenHelper {
 
     static final String DatabaseName = "FinLisSQLDatabase";
     static final int DatabaseVersion = 2;
@@ -13,7 +13,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     static final String ACCOUNT_USERNAME = "username";
     static final String ACCOUNT_PASSWORD = "password";
 
-    public MyDatabaseHelper(Context context){
+    public AccountDatabaseHelper(Context context){
         super(context, DatabaseName, null, DatabaseVersion);
     }
 
