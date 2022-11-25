@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AccountDatabaseHelper extends SQLiteOpenHelper {
 
-    static final String DatabaseName = "FinLisSQLDatabase";
+    static final String DatabaseName = "FinLisAccountDatabase";
     static final int DatabaseVersion = 2;
     static final String ACCOUNT_TABLE = "accounts";
     static final String ACCOUNT_ID = "id";
