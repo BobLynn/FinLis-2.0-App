@@ -19,7 +19,7 @@ public class AccountDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String SQL = "create table " + ACCOUNT_TABLE + "("
+        String SQL = "create table " + ACCOUNT_TABLE + " ( "
                 + ACCOUNT_ID + " integer primary key autoincrement, "
                 + ACCOUNT_USERNAME + " text, "
                 + ACCOUNT_PASSWORD + " text )";

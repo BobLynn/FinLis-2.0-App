@@ -16,10 +16,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     EditText loginUsername;
     EditText loginPassword;
+    String readUsername, readPassword;
     Button loginButton;
     Button accountmainButton;
     TextView tvToRegister;
-    String readUsername, readPassword;
+    Button toMainMenuButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        賬戶列表界面按鈕
         accountmainButton = (Button) findViewById(R.id.accountmainButton);
         accountmainButton.setOnClickListener(this);
+
+//        到主畫面按鈕
+        toMainMenuButton = (Button) findViewById(R.id.toMainMenuButton);
+        toMainMenuButton.setOnClickListener(this);
     }
 
 //    按鈕效果副函式
@@ -50,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        讀取資料庫資料
         SQLiteDatabase sqLiteDatabase;
         sqLiteDatabase = new AccountDatabaseHelper(this).getWritableDatabase();
-        Cursor readDatabase = sqLiteDatabase.rawQuery("SELECT * FROM accounts",null);
+        Cursor readDatabase = sqLiteDatabase.rawQuery("SELECT * FROM " + AccountDatabaseHelper.ACCOUNT_TABLE,null);
 
         switch (view.getId()){
 
@@ -64,13 +70,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         break;
                     }
+
                     else {
                         Toast.makeText(LoginActivity.this,"Incorrect username or password!", Toast.LENGTH_SHORT).show();
+                        continue;
                     }
 
                 }
-
-
                 break;
 
             case R.id.tvToRegister:
@@ -79,7 +85,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.accountmainButton:
                 startActivity(new Intent(this, AccountMainActivity.class));
+                Toast.makeText(this, "Magic in the air!", Toast.LENGTH_SHORT).show();
                 break;
+
+            case R.id.toMainMenuButton:
+                startActivity(new Intent(this, MainActivity.class));
+                Toast.makeText(this, "Magic in the air!", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -21,9 +21,9 @@ public class AccountMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_main);
-//        TODO:getReadableDatabase: 先以讀寫方式打開數據庫，如果數據庫的磁盤空間滿了，
-//        TODO:就會打開失敗，當打開失敗後會繼續嘗試以只讀方式打開數據庫。
-//        TODO:如果該問題成功解決，則只讀數據庫對象就會關閉，然後返回一個可讀寫的數據庫對象
+//        getReadableDatabase: 先以讀寫方式打開數據庫，如果數據庫的磁盤空間滿了，
+//        就會打開失敗，當打開失敗後會繼續嘗試以只讀方式打開數據庫。
+//        如果該問題成功解決，則只讀數據庫對象就會關閉，然後返回一個可讀寫的數據庫對象
         SQLiteDatabase sqLiteDatabase = new AccountDatabaseHelper(this).getReadableDatabase();
 
         String SQL = "select " +

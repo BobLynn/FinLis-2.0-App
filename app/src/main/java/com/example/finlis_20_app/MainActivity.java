@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.accountmainButton:
                 startActivity(new Intent(this, AccountMainActivity.class));
+                Toast.makeText(this, "Magic in the air!", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
