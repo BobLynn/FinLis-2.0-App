@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, PropertyMainActivity.class));
                 break;
 
-            case R.id.ocrButton:
+            case R.id.toMLKitButton:
                 startActivity(new Intent(this, OcrMainActivity.class));
                 break;
 
