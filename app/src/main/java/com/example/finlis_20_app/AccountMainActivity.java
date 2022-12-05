@@ -24,13 +24,13 @@ public class AccountMainActivity extends AppCompatActivity {
 //        getReadableDatabase: 先以讀寫方式打開數據庫，如果數據庫的磁盤空間滿了，
 //        就會打開失敗，當打開失敗後會繼續嘗試以只讀方式打開數據庫。
 //        如果該問題成功解決，則只讀數據庫對象就會關閉，然後返回一個可讀寫的數據庫對象
-        SQLiteDatabase sqLiteDatabase = new AccountDatabaseHelper(this).getReadableDatabase();
+        SQLiteDatabase sqLiteDatabase = new DatabaseHelperAccount(this).getReadableDatabase();
 
         String SQL = "select " +
-                AccountDatabaseHelper.ACCOUNT_ID + " , " +
-                AccountDatabaseHelper.ACCOUNT_USERNAME + " , " +
-                AccountDatabaseHelper.ACCOUNT_PASSWORD + " from " +
-                AccountDatabaseHelper.ACCOUNT_TABLE;
+                DatabaseHelperAccount.ACCOUNT_ID + " , " +
+                DatabaseHelperAccount.ACCOUNT_USERNAME + " , " +
+                DatabaseHelperAccount.ACCOUNT_PASSWORD + " from " +
+                DatabaseHelperAccount.ACCOUNT_TABLE;
 
         Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
 
@@ -40,9 +40,9 @@ public class AccountMainActivity extends AppCompatActivity {
             cursor.moveToLast();
             for (int i = 0; i<cursor.getCount(); i++){
                 Map<String, String> map = new HashMap<String, String>();
-                map.put(AccountDatabaseHelper.ACCOUNT_ID, cursor.getString(0));
-                map.put(AccountDatabaseHelper.ACCOUNT_USERNAME, cursor.getString(1));
-                map.put(AccountDatabaseHelper.ACCOUNT_PASSWORD, cursor.getString(2));
+                map.put(DatabaseHelperAccount.ACCOUNT_ID, cursor.getString(0));
+                map.put(DatabaseHelperAccount.ACCOUNT_USERNAME, cursor.getString(1));
+                map.put(DatabaseHelperAccount.ACCOUNT_PASSWORD, cursor.getString(2));
                 list.add(map);
                 cursor.moveToPrevious();
             }
@@ -51,7 +51,7 @@ public class AccountMainActivity extends AppCompatActivity {
         sqLiteDatabase.close();
 
         SimpleAdapter adapter = new SimpleAdapter(this, list, android.R.layout.simple_list_item_2,
-                new String[]{AccountDatabaseHelper.ACCOUNT_USERNAME, AccountDatabaseHelper.ACCOUNT_PASSWORD},
+                new String[]{DatabaseHelperAccount.ACCOUNT_USERNAME, DatabaseHelperAccount.ACCOUNT_PASSWORD},
                 new int[]{android.R.id.text1, android.R.id.text2});
 
 
@@ -62,10 +62,10 @@ public class AccountMainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-                intent.putExtra("id", list.get(position).get(AccountDatabaseHelper.ACCOUNT_ID));
-                intent.putExtra("username", list.get(position).get(AccountDatabaseHelper.ACCOUNT_USERNAME));
-                intent.putExtra("password", list.get(position).get(AccountDatabaseHelper.ACCOUNT_PASSWORD));
-                intent.setClass(AccountMainActivity.this, AccountModifyActivity.class);
+                intent.putExtra("id", list.get(position).get(DatabaseHelperAccount.ACCOUNT_ID));
+                intent.putExtra("username", list.get(position).get(DatabaseHelperAccount.ACCOUNT_USERNAME));
+                intent.putExtra("password", list.get(position).get(DatabaseHelperAccount.ACCOUNT_PASSWORD));
+                intent.setClass(AccountMainActivity.this, ModifyAccountActivity.class);
                 startActivity(intent);
             }
         });
@@ -74,12 +74,12 @@ public class AccountMainActivity extends AppCompatActivity {
     //「+」按鈕動作
     public void faToRegister(View view) {
         Intent intent = new Intent();
-        intent.setClass(this, RegisterActivity.class);
+        intent.setClass(this, RegisterAccountActivity.class);
         startActivity(intent);
     }
 
     public void faToLogin(View view){
-        startActivity(new Intent(AccountMainActivity.this, LoginActivity.class));
+        startActivity(new Intent(AccountMainActivity.this, LoginAccountActivity.class));
     }
 
 

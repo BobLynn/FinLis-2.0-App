@@ -2,98 +2,94 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layoutRegister"
+    android:id="@+id/layoutPropertyMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginAccountActivity">
+    tools:context=".PropertyMainActivity">
 
     <TextView
-        android:id="@+id/registerTitle"
-        android:layout_width="0dp"
+        android:id="@+id/propertyTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:gravity="center"
-        android:text="REGISTER PAGE"
+        android:text="PROPERTY PAGE"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/registerUsername"
-        android:layout_width="0dp"
+        android:id="@+id/propertyName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
-        android:hint="SET YOUR USERNAME HERE"
-        android:inputType="textPersonName"
+        android:hint="PROPERTY NAME HERE"
+        android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/propertyTitle" />
 
     <EditText
-        android:id="@+id/registerPassword"
-        android:layout_width="0dp"
+        android:id="@+id/propertyContent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
-        android:hint="SET YOUR PASSWORD HERE"
-        android:inputType="textPassword"
+        android:hint="PROPERTY CONTENT HERE"
+        android:inputType="text"
         android:minHeight="48dp"
+        android:singleLine="false"
+        android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerUsername"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/propertyName" />
 
     <Button
-        android:id="@+id/registerButton"
-        android:layout_width="0dp"
+        android:id="@+id/uploadDataButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="80dp"
-        android:text="add your account"
-        android:textSize="14sp"
+        android:text="upload data"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
-
-    <TextView
-        android:id="@+id/tvToLogin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
-        android:gravity="center"
-        android:text="→BACK TO LOGIN PAGE←"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerButton" />
+        app:layout_constraintTop_toBottomOf="@+id/propertyContent" />
 
     <Button
-        android:id="@+id/accountmainButton"
-        android:layout_width="0dp"
+        android:id="@+id/toMainMenuButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="100dp"
-        android:backgroundTint="@color/design_default_color_error"
-        android:text="to account list"
+        android:text="to main menu"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvToLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/toPropertyContentListButton" />
+
+    <Button
+        android:id="@+id/toPropertyContentListButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="to property content list"
+        android:textSize="16sp"
+        android:backgroundTint="@color/design_default_color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadDataButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

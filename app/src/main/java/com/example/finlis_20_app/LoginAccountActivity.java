@@ -6,13 +6,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginAccountActivity extends AppCompatActivity implements View.OnClickListener{
 
     EditText loginUsername;
     EditText loginPassword;
@@ -55,32 +56,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 //        讀取資料庫資料
         SQLiteDatabase sqLiteDatabase;
-        sqLiteDatabase = new AccountDatabaseHelper(this).getWritableDatabase();
-        Cursor readDatabase = sqLiteDatabase.rawQuery("SELECT * FROM " + AccountDatabaseHelper.ACCOUNT_TABLE,null);
+        sqLiteDatabase = new DatabaseHelperAccount(this).getWritableDatabase();
+        Cursor readDatabase = sqLiteDatabase.rawQuery("SELECT * FROM " + DatabaseHelperAccount.ACCOUNT_TABLE,null);
 
         switch (view.getId()){
 
             case R.id.loginButton:
 
-                while(readDatabase.moveToNext()){
-                    readUsername = readDatabase.getString(1);
-                    readPassword = readDatabase.getString(2);
-                    if(loginUsername.getText().toString().equals(readUsername) && loginPassword.getText().toString().equals(readPassword)){
-                        Toast.makeText(LoginActivity.this,"Login Successful!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        break;
-                    }
+                String j1 = loginUsername.getText().toString().trim();
+                String j2 = loginPassword.getText().toString().trim();
 
-                    else {
-                        Toast.makeText(LoginActivity.this,"Incorrect username or password!", Toast.LENGTH_SHORT).show();
-                        continue;
-                    }
-
+                if(TextUtils.isEmpty(j1) || TextUtils.isEmpty(j2)){
+                    Toast.makeText(LoginAccountActivity.this,"Fill the blanks!!", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    while(readDatabase.moveToNext()) {
+                        readUsername = readDatabase.getString(1);
+                        readPassword = readDatabase.getString(2);
+
+                        if(loginUsername.getText().toString().equals(readUsername) && loginPassword.getText().toString().equals(readPassword)){
+                            Toast.makeText(LoginAccountActivity.this,"Login Successful!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginAccountActivity.this, MainActivity.class));
+                        }
+                        else {
+                            Toast.makeText(LoginAccountActivity.this,"Incorrect username or password!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
                 break;
 
             case R.id.tvToRegister:
-                startActivity(new Intent(this, RegisterActivity.class));
+                startActivity(new Intent(this, RegisterAccountActivity.class));
                 break;
 
             case R.id.accountmainButton:

@@ -4,10 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,12 +25,54 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 import java.io.IOException;
 
-public class MLKitOCRActivity extends AppCompatActivity {
+public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickListener{
+
+    public final static int CAMERA_PERM_CODE = 100;
+    public final static int CAMERA_REQUEST_CODE = 101;
+
+    ImageView importImageView;
+    Button importImageButton, ocrButton, copyTextButton;
+    Button backToMainButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mlkit_ocractivity);
+
+
+        importImageView = (ImageView) findViewById(R.id.importImageView);
+
+        importImageButton = (Button) findViewById(R.id.importImageButton);
+        importImageButton.setOnClickListener(this);
+
+        ocrButton = (Button) findViewById(R.id.ocrButton);
+        ocrButton.setOnClickListener(this);
+
+        copyTextButton = (Button) findViewById(R.id.copyTextButton);
+        copyTextButton.setOnClickListener(this);
+
+        backToMainButton = (Button) findViewById(R.id.backToMainButton);
+        backToMainButton.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.importImageButton:
+
+                break;
+
+            case R.id.ocrButton:
+                break;
+
+            case R.id.copyTextButton:
+                break;
+
+            case R.id.backToMainButton:
+                startActivity(new Intent(this, MainActivity.class));
+                break;
+        }
 
     }
 

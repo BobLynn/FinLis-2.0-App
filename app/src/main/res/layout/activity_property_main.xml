@@ -1,11 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutPropertyMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PropertyMainActivity">
 
-    <include layout="@layout/activity_property_content"/>
+<!--    <TextView-->
+<!--        android:id="@+id/PropertyMainTitle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Property Database"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textAppearance="@style/TextAppearance.AppCompat.Display1"-->
+<!--        android:textColor="#000000" />-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--    「+」號按鈕--> <!--        放置於底部、結尾（右下角）-->
+    <include layout="@layout/activity_property_content" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/propertyAddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="25dp"
+        android:onClick="faToAddProperty"
+        app:layout_anchorGravity="center"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+
+
+    <!--    編輯按鈕--> <!--        放置於底部（左下角）-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/toLoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="25dp"
+        app:layout_anchorGravity="center"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        android:onClick="faToMainMenu"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

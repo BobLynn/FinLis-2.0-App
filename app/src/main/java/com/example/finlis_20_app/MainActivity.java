@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button propertyButton, ocrButton;
+    Button propertyButton, toOCRButton;
 
     Button logoutButton;
     Button accountmainButton;
@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         propertyButton.setOnClickListener(this);
 
 //        光學字元辨識按鈕
-        ocrButton = (Button)findViewById(R.id.propertyButton);
-        ocrButton.setOnClickListener(this);
+        toOCRButton = (Button)findViewById(R.id.toOCRButton);
+        toOCRButton.setOnClickListener(this);
 
 //        登出按鈕
         logoutButton = (Button)findViewById(R.id.logoutBotton);
@@ -44,15 +44,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.propertyButton:
-                startActivity(new Intent(this, PropertyMainActivity.class));
+                startActivity(new Intent(this, AddPropertyActivity.class));
                 break;
 
-            case R.id.toMLKitButton:
+            case R.id.toOCRButton:
                 startActivity(new Intent(this, OcrMainActivity.class));
                 break;
 
             case R.id.logoutBotton:
-                startActivity(new Intent(this, LoginActivity.class));
+                startActivity(new Intent(this, LoginAccountActivity.class));
                 Toast.makeText(MainActivity.this, "Logout Successful!", Toast.LENGTH_SHORT).show();
                 break;
 

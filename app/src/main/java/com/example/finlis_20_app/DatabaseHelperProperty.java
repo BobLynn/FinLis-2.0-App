@@ -4,9 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
-public class PropertyDatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelperProperty extends SQLiteOpenHelper {
 
     static final String DatabaseName = "FinLisPropertyDatabase";
     static final int DatabaseVersion = 3;
@@ -15,7 +13,7 @@ public class PropertyDatabaseHelper extends SQLiteOpenHelper {
     static final String PROPERTY_NAME = "name";
     static final String PROPERTY_CONTENT = "content";
 
-    public PropertyDatabaseHelper(Context context) {
+    public DatabaseHelperProperty(Context context) {
         super(context, DatabaseName, null, DatabaseVersion);
     }
 

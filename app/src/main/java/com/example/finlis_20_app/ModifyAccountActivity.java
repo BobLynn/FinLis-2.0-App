@@ -9,10 +9,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AccountModifyActivity extends AppCompatActivity {
+public class ModifyAccountActivity extends AppCompatActivity {
 
     String id;
     EditText modifyUsername, modifyPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +36,14 @@ public class AccountModifyActivity extends AppCompatActivity {
 
         switch (view.getId()){
             case R.id.modifyModifyButton:
-                sqLiteDatabase = new AccountDatabaseHelper(this).getWritableDatabase();
+                sqLiteDatabase = new DatabaseHelperAccount(this).getWritableDatabase();
                 String sqlUpdate = "update " +
-                        AccountDatabaseHelper.ACCOUNT_TABLE +
-                        " set " + AccountDatabaseHelper.ACCOUNT_USERNAME +
+                        DatabaseHelperAccount.ACCOUNT_TABLE +
+                        " set " + DatabaseHelperAccount.ACCOUNT_USERNAME +
                         "='" + modifyUsername.getText().toString() + "', " +
-                        AccountDatabaseHelper.ACCOUNT_PASSWORD + "='" +
+                        DatabaseHelperAccount.ACCOUNT_PASSWORD + "='" +
                         modifyPassword.getText().toString() +"' " +
-                        "where " + AccountDatabaseHelper.ACCOUNT_ID +
+                        "where " + DatabaseHelperAccount.ACCOUNT_ID +
                         "=" + id;
                 sqLiteDatabase.execSQL(sqlUpdate);
                 sqLiteDatabase.close();
@@ -51,11 +52,11 @@ public class AccountModifyActivity extends AppCompatActivity {
                 break;
 
             case R.id.modifyDeleteButton:
-                sqLiteDatabase = new AccountDatabaseHelper(this).getWritableDatabase();
+                sqLiteDatabase = new DatabaseHelperAccount(this).getWritableDatabase();
 
                 String sqlDelete = "delete from " +
-                        AccountDatabaseHelper.ACCOUNT_TABLE +
-                        " where " + AccountDatabaseHelper.ACCOUNT_ID + "=" +
+                        DatabaseHelperAccount.ACCOUNT_TABLE +
+                        " where " + DatabaseHelperAccount.ACCOUNT_ID + "=" +
                         id;
 
                 sqLiteDatabase.execSQL(sqlDelete);
@@ -65,7 +66,9 @@ public class AccountModifyActivity extends AppCompatActivity {
 
                 break;
             case R.id.modifyBackToContentButton:
-                startActivity(new Intent(AccountModifyActivity.this, AccountMainActivity.class));
+                startActivity(new Intent(ModifyAccountActivity.this, AccountMainActivity.class));
+
+
         }
     }
 }

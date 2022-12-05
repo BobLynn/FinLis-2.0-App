@@ -22,13 +22,13 @@ public class PropertyMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_main);
 
-        SQLiteDatabase propertyDatabase = new PropertyDatabaseHelper(this).getReadableDatabase();
+        SQLiteDatabase propertyDatabase = new DatabaseHelperProperty(this).getReadableDatabase();
 
         String sql = "select " +
-                PropertyDatabaseHelper.PROPERTY_ID + " , " +
-                PropertyDatabaseHelper.PROPERTY_NAME + " , " +
-                PropertyDatabaseHelper.PROPERTY_CONTENT + " from " +
-                PropertyDatabaseHelper.PROPERTY_TABLE;
+                DatabaseHelperProperty.PROPERTY_ID + " , " +
+                DatabaseHelperProperty.PROPERTY_NAME + " , " +
+                DatabaseHelperProperty.PROPERTY_CONTENT + " from " +
+                DatabaseHelperProperty.PROPERTY_TABLE;
 
         Cursor cursor = propertyDatabase.rawQuery(sql, null);
 
@@ -38,9 +38,9 @@ public class PropertyMainActivity extends AppCompatActivity {
             cursor.moveToLast();
             for(int j = 0; j< cursor.getCount(); j++){
                 Map<String, String> map = new HashMap<String, String>();
-                map.put(PropertyDatabaseHelper.PROPERTY_ID, cursor.getString(0));
-                map.put(PropertyDatabaseHelper.PROPERTY_NAME, cursor.getString(1));
-                map.put(PropertyDatabaseHelper.PROPERTY_CONTENT, cursor.getString(2));
+                map.put(DatabaseHelperProperty.PROPERTY_ID, cursor.getString(0));
+                map.put(DatabaseHelperProperty.PROPERTY_NAME, cursor.getString(1));
+                map.put(DatabaseHelperProperty.PROPERTY_CONTENT, cursor.getString(2));
                 list.add(map);
                 cursor.moveToPrevious();
             }
@@ -49,7 +49,7 @@ public class PropertyMainActivity extends AppCompatActivity {
         propertyDatabase.close();
 
         SimpleAdapter adapter = new SimpleAdapter(this, list, android.R.layout.simple_list_item_2,
-                new String[]{PropertyDatabaseHelper.PROPERTY_NAME, PropertyDatabaseHelper.PROPERTY_CONTENT},
+                new String[]{DatabaseHelperProperty.PROPERTY_NAME, DatabaseHelperProperty.PROPERTY_CONTENT},
                 new int[]{android.R.id.text1, android.R.id.text2});
 
         ListView listView = findViewById(R.id.propertyContentListView);
@@ -59,13 +59,21 @@ public class PropertyMainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-                intent.putExtra("id", list.get(position).get(PropertyDatabaseHelper.PROPERTY_ID));
-                intent.putExtra("name", list.get(position).get(PropertyDatabaseHelper.PROPERTY_NAME));
-                intent.putExtra("content", list.get(position).get(PropertyDatabaseHelper.PROPERTY_CONTENT));
-                intent.setClass(PropertyMainActivity.this, PropertyModifyActivity.class);
+                intent.putExtra("id", list.get(position).get(DatabaseHelperProperty.PROPERTY_ID));
+                intent.putExtra("name", list.get(position).get(DatabaseHelperProperty.PROPERTY_NAME));
+                intent.putExtra("content", list.get(position).get(DatabaseHelperProperty.PROPERTY_CONTENT));
+                intent.setClass(PropertyMainActivity.this, ModifyPropertyActivity.class);
                 startActivity(intent);
             }
         });
 
+    }
+
+    public void faToAddProperty (View view){
+        startActivity(new Intent(this, AddPropertyActivity.class));
+    }
+
+    public void faToMainMenu(View view){
+        startActivity(new Intent(this, AddPropertyActivity.class));
     }
 }

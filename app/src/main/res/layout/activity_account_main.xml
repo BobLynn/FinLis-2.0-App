@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".AccountMainActivity">
 
+
+<!--    <TextView-->
+<!--        android:id="@+id/accountMainTitle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Account Database"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textAppearance="@style/TextAppearance.AppCompat.Display1"-->
+<!--        android:textColor="#000000" />-->
+
     <!--    嵌入activity_account_content的內容-->
     <include layout="@layout/activity_account_content"/>
 
@@ -18,7 +28,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="25dp"
         android:onClick="faToRegister"
-        app:backgroundTint="#B71C1C"
         app:layout_anchorGravity="center"
         app:srcCompat="@android:drawable/ic_input_add" />
 
@@ -26,7 +35,7 @@
 
     <!--    編輯按鈕--> <!--        放置於底部（左下角）-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/modifyAccountButton"
+        android:id="@+id/toLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
