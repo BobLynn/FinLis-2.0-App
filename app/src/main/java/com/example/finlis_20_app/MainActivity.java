@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.toOCRButton:
-                startActivity(new Intent(this, OcrMainActivity.class));
+                startActivity(new Intent(this, MainOCRActivity.class));
                 break;
 
             case R.id.logoutBotton:
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.accountmainButton:
-                startActivity(new Intent(this, AccountMainActivity.class));
+                startActivity(new Intent(this, MainAccountActivity.class));
                 Toast.makeText(this, "Magic in the air!", Toast.LENGTH_SHORT).show();
                 break;
         }

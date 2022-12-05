@@ -50,7 +50,7 @@ public class ModifyPropertyActivity extends AppCompatActivity {
                 propertyDatabase.close();
 
                 Toast.makeText(this, "Property Content Modified Successfully!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, PropertyMainActivity.class));
+                startActivity(new Intent(this, MainPropertyActivity.class));
                 break;
             case R.id.modifyDeleteButton:
                 propertyDatabase = new DatabaseHelperProperty(this).getWritableDatabase();
@@ -61,7 +61,7 @@ public class ModifyPropertyActivity extends AppCompatActivity {
                 propertyDatabase.execSQL(sqlDelete);
                 propertyDatabase.close();
                 Toast.makeText(this, "Delete Successful!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, PropertyMainActivity.class));
+                startActivity(new Intent(this, MainPropertyActivity.class));
                 break;
             case R.id.modifyBackToContentButton:
                 startActivity(new Intent(this, AddPropertyActivity.class));

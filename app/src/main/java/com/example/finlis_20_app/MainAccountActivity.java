@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AccountMainActivity extends AppCompatActivity {
+public class MainAccountActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class AccountMainActivity extends AppCompatActivity {
                 intent.putExtra("id", list.get(position).get(DatabaseHelperAccount.ACCOUNT_ID));
                 intent.putExtra("username", list.get(position).get(DatabaseHelperAccount.ACCOUNT_USERNAME));
                 intent.putExtra("password", list.get(position).get(DatabaseHelperAccount.ACCOUNT_PASSWORD));
-                intent.setClass(AccountMainActivity.this, ModifyAccountActivity.class);
+                intent.setClass(MainAccountActivity.this, ModifyAccountActivity.class);
                 startActivity(intent);
             }
         });
@@ -79,7 +79,7 @@ public class AccountMainActivity extends AppCompatActivity {
     }
 
     public void faToLogin(View view){
-        startActivity(new Intent(AccountMainActivity.this, LoginAccountActivity.class));
+        startActivity(new Intent(MainAccountActivity.this, LoginAccountActivity.class));
     }
 
 

@@ -49,7 +49,7 @@ public class RegisterAccountActivity extends AppCompatActivity implements View.O
                 break;
 
             case R.id.accountmainButton:
-                startActivity(new Intent(this, AccountMainActivity.class));
+                startActivity(new Intent(this, MainAccountActivity.class));
                 break;
         }
     }

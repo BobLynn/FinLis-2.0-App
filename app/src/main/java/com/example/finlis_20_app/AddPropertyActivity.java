@@ -46,7 +46,7 @@ public class AddPropertyActivity extends AppCompatActivity implements View.OnCli
                 break;
 
             case R.id.toPropertyContentListButton:
-                startActivity(new Intent(this, PropertyMainActivity.class));
+                startActivity(new Intent(this, MainPropertyActivity.class));
                 break;
 
             case R.id.toMainMenuButton:

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PropertyMainActivity extends AppCompatActivity {
+public class MainPropertyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class PropertyMainActivity extends AppCompatActivity {
                 intent.putExtra("id", list.get(position).get(DatabaseHelperProperty.PROPERTY_ID));
                 intent.putExtra("name", list.get(position).get(DatabaseHelperProperty.PROPERTY_NAME));
                 intent.putExtra("content", list.get(position).get(DatabaseHelperProperty.PROPERTY_CONTENT));
-                intent.setClass(PropertyMainActivity.this, ModifyPropertyActivity.class);
+                intent.setClass(MainPropertyActivity.this, ModifyPropertyActivity.class);
                 startActivity(intent);
             }
         });

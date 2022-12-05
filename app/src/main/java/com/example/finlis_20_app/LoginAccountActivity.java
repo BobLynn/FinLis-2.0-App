@@ -91,7 +91,7 @@ public class LoginAccountActivity extends AppCompatActivity implements View.OnCl
                 break;
 
             case R.id.accountmainButton:
-                startActivity(new Intent(this, AccountMainActivity.class));
+                startActivity(new Intent(this, MainAccountActivity.class));
                 Toast.makeText(this, "Magic in the air!", Toast.LENGTH_SHORT).show();
                 break;
 

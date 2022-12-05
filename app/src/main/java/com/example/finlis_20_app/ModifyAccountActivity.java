@@ -48,7 +48,7 @@ public class ModifyAccountActivity extends AppCompatActivity {
                 sqLiteDatabase.execSQL(sqlUpdate);
                 sqLiteDatabase.close();
                 Toast.makeText(this, "Account Content Modified Successfully!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, AccountMainActivity.class));
+                startActivity(new Intent(this, MainAccountActivity.class));
                 break;
 
             case R.id.modifyDeleteButton:
@@ -62,11 +62,11 @@ public class ModifyAccountActivity extends AppCompatActivity {
                 sqLiteDatabase.execSQL(sqlDelete);
                 sqLiteDatabase.close();
                 Toast.makeText(this, "Delete Successful!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, AccountMainActivity.class));
+                startActivity(new Intent(this, MainAccountActivity.class));
 
                 break;
             case R.id.modifyBackToContentButton:
-                startActivity(new Intent(ModifyAccountActivity.this, AccountMainActivity.class));
+                startActivity(new Intent(ModifyAccountActivity.this, MainAccountActivity.class));
 
 
         }

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class OcrMainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainOCRActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button ocrMainToMenuButton, toMLKitButton;
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".PropertyMainActivity">
+    tools:context=".MainPropertyActivity">
     <ListView
         android:id="@+id/propertyContentListView"
         android:layout_width="match_parent"
