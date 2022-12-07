@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'com.example.finlis_20_app'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.finlis_20_app"
         minSdk 22
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -62,12 +62,12 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.1.0')
     implementation 'com.google.firebase:firebase-analytics'
 
-    // This library is used for crop image feature
-    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
-
-    // This library is used for loading the
-    // cropped image into ImageView.
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+//    // This library is used for crop image feature
+//    api 'com.theartofdev.edmodo:android-image-cropper:'
+//
+//    // This library is used for loading the
+//    // cropped image into ImageView.
+//    implementation 'com.squareup.picasso:picasso:2.5.2'
 
 
 
