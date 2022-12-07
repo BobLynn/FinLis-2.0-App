@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1015854685729",
+    "project_id": "finlis-20-app",
+    "storage_bucket": "finlis-20-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015854685729:android:bc0f0e10f46ce58828cd60",
+        "android_client_info": {
+          "package_name": "com.example.finlis_20_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015854685729-8q2fd193e4q93d2f24got60eod0vcarm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCMZBHFMjOaypt4orewBlGNt3IqjmAVxY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015854685729-8q2fd193e4q93d2f24got60eod0vcarm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
