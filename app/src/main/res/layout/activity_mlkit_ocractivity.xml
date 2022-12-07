@@ -37,17 +37,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:text="import image"
+            android:text="image to text"
             android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/ocrButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:text="ocr"
-            android:onClick="doOCR"
-            android:textSize="16sp" />
+<!--        <Button-->
+<!--            android:id="@+id/ocrButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:text="ocr"-->
+<!--            android:onClick="doOCR"-->
+<!--            android:textSize="16sp" />-->
 
         <Button
             android:id="@+id/copyTextButton"
@@ -66,7 +66,8 @@
         android:layout_weight="1"
         android:hint="Recognition result will appear here."
         android:scrollbars="vertical"
-        android:text="" />
+        android:text=""
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/backToMainButton"

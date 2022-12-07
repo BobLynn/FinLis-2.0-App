@@ -21,10 +21,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.renderscript.ScriptGroup;
+import android.security.keystore.SecureKeyImportUnavailableException;
 import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +42,10 @@ import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.chinese.ChineseTextRecognizerOptions;
+import com.google.mlkit.vision.text.devanagari.DevanagariTextRecognizerOptions;
+import com.google.mlkit.vision.text.japanese.JapaneseTextRecognizerOptions;
+import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 import java.nio.ByteBuffer;
@@ -66,11 +72,13 @@ public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickL
         importImageButton = findViewById(R.id.importImageButton);
         importImageButton.setOnClickListener(this);
 
-        ocrButton = findViewById(R.id.ocrButton);
-        ocrButton.setOnClickListener(this);
+//        ocrButton = findViewById(R.id.ocrButton);
+//        ocrButton.setOnClickListener(this);
 
         copyTextButton = findViewById(R.id.copyTextButton);
         copyTextButton.setOnClickListener(this);
+
+        resultTextView = findViewById(R.id.resultTextView);
 
         backToMainButton = findViewById(R.id.backToMainButton);
         backToMainButton.setOnClickListener(this);
@@ -130,36 +138,107 @@ public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickL
         if (requestCode == CAMERA_REQUEST_CODE){
             Bitmap image = (Bitmap) data.getExtras().get("data");
             importImageView.setImageBitmap(image);
-            //TODO: Firebase 策略
-            //process images
-            //TODO:1. 從一個Bitmap物件創建一個FirebaseVisionImage物件
-            FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromBitmap(image);
-            //TODO:2. 從FirebaseVision獲取實例
-            FirebaseVision firebaseVision = FirebaseVision.getInstance();
-            //TODO:3. 從FirebaseVision創建一個實例
-            FirebaseVisionTextRecognizer firebaseVisionTextRecognizer = firebaseVision.getOnDeviceTextRecognizer();
-            //TODO:4. 創建一個Task以處理圖像
-            Task<FirebaseVisionText> task = firebaseVisionTextRecognizer.processImage(firebaseVisionImage);
-            //TODO:5. 若Task執行成功
-            task.addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-                @Override
-                public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                    String s = firebaseVisionText.getText();
-                    resultTextView.setText(s);
 
-                }
-            });
 
-            //TODO:6. 若Task執行失敗
-            task.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+//            //TODO: Firebase 策略
 
-                }
-            });
+//            //PROCESS IMAGES
+//            //TODO:1. 從一個Bitmap物件創建一個FirebaseVisionImage物件
+//            FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromBitmap(image);
+//            //TODO:2. 從FirebaseVision獲取實例
+//            FirebaseVision firebaseVision = FirebaseVision.getInstance();
+//            //TODO:3. 從FirebaseVision創建一個實例
+//            FirebaseVisionTextRecognizer firebaseVisionTextRecognizer = firebaseVision.getOnDeviceTextRecognizer();
+//            //TODO:4. 創建一個Task以處理圖像
+//            Task<FirebaseVisionText> task = firebaseVisionTextRecognizer.processImage(firebaseVisionImage);
+//            //TODO:5. 若Task執行成功
+//            task.addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+//                @Override
+//                public void onSuccess(FirebaseVisionText firebaseVisionText) {
+//                    String s = firebaseVisionText.getText();
+//                    resultTextView.setText(s);
+//
+//                }
+//            });
+//            //TODO:6. 若Task執行失敗
+//            task.addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+//
+//                }
+//            });
+
+
+            //TODO: ML KIT 策略
+
+            // When using Chinese script library
+            TextRecognizer recognizer =
+                    TextRecognition.getClient(new ChineseTextRecognizerOptions.Builder().build());
+
+
+
+
+            InputImage MLKITimage = InputImage.fromBitmap(image, 0);
+
+
+            Task<Text> OCRresult = recognizer.process(MLKITimage);
+
+            OCRresult.addOnSuccessListener(new OnSuccessListener<Text>() {
+                        @Override
+                        public void onSuccess(Text visionText) {
+                            String s = visionText.getText();
+                            resultTextView.setText(s);
+
+                            // Task completed successfully
+                            // ...
+                        }
+                    });
+            OCRresult.addOnFailureListener(
+                    new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // Task failed with an exception
+                            // ...
+                        }
+                    });
 
         }
+    }
+
+    private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
+    static {
+        ORIENTATIONS.append(Surface.ROTATION_0, 0);
+        ORIENTATIONS.append(Surface.ROTATION_90, 90);
+        ORIENTATIONS.append(Surface.ROTATION_180, 180);
+        ORIENTATIONS.append(Surface.ROTATION_270, 270);
+    }
+
+    /**
+     * Get the angle by which an image must be rotated given the device's current
+     * orientation.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private int getRotationCompensation(String cameraId, Activity activity, boolean isFrontFacing)
+            throws CameraAccessException {
+        // Get the device's current rotation relative to its "native" orientation.
+        // Then, from the ORIENTATIONS table, look up the angle the image must be
+        // rotated to compensate for the device's rotation.
+        int deviceRotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+        int rotationCompensation = ORIENTATIONS.get(deviceRotation);
+
+        // Get the device's sensor orientation.
+        CameraManager cameraManager = (CameraManager) activity.getSystemService(CAMERA_SERVICE);
+        int sensorOrientation = cameraManager
+                .getCameraCharacteristics(cameraId)
+                .get(CameraCharacteristics.SENSOR_ORIENTATION);
+
+        if (isFrontFacing) {
+            rotationCompensation = (sensorOrientation + rotationCompensation) % 360;
+        } else { // back-facing
+            rotationCompensation = (sensorOrientation - rotationCompensation + 360) % 360;
+        }
+        return rotationCompensation;
     }
 
 
