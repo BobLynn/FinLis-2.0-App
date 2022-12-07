@@ -62,6 +62,13 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.1.0')
     implementation 'com.google.firebase:firebase-analytics'
 
+    // This library is used for crop image feature
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+
+    // This library is used for loading the
+    // cropped image into ImageView.
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
 
 
 

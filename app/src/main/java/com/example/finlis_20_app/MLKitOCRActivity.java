@@ -214,6 +214,8 @@ public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickL
         ORIENTATIONS.append(Surface.ROTATION_270, 270);
     }
 
+
+
     /**
      * Get the angle by which an image must be rotated given the device's current
      * orientation.
