@@ -3,6 +3,7 @@ package com.example.finlis_20_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.logoutBotton:
+//                SharedPreferences pref = getSharedPreferences("userdata", 0);
+//                pref.edit().remove("userdata").commit();
                 startActivity(new Intent(this, LoginAccountActivity.class));
                 Toast.makeText(MainActivity.this, "Logout Successful!", Toast.LENGTH_SHORT).show();
                 break;

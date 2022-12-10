@@ -23,9 +23,11 @@ public class ModifyAccountActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
+        modifyUsername = findViewById(R.id.modifyUsername);
+        modifyPassword = findViewById(R.id.modifyPassword);
+
         id = bundle.getString("id", "0");
-        modifyUsername = (EditText) findViewById(R.id.modifyUsername);
-        modifyPassword = (EditText) findViewById(R.id.modifyPassword);
+
         modifyUsername.setText(bundle.getString("username"));
         modifyPassword.setText(bundle.getString("password"));
     }

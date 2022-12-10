@@ -13,8 +13,7 @@ public class ModifyPropertyActivity extends AppCompatActivity {
 
 
     String id;
-    EditText modifyPropertyName, modifyPropertyContent;
-//    Button modifyModifyButton, modifyDeleteButton, modifyBackToContentButton;
+    EditText modifyPropertyName, modifyPropertyContent, modifyPropertyUserName;
 
 
     @Override
@@ -26,10 +25,13 @@ public class ModifyPropertyActivity extends AppCompatActivity {
         Bundle bundle_1 = intent.getExtras();
 
         id = bundle_1.getString("id", "0");
-        modifyPropertyName = (EditText)findViewById(R.id.modifyPropertyName);
-        modifyPropertyContent = (EditText)findViewById(R.id.modifyPropertyContent);
+        modifyPropertyName = findViewById(R.id.modifyPropertyName);
+        modifyPropertyContent = findViewById(R.id.modifyPropertyContent);
+        modifyPropertyUserName = findViewById(R.id.modifyPropertyUserName);
+
         modifyPropertyName.setText(bundle_1.getString("name"));
         modifyPropertyContent.setText(bundle_1.getString("content"));
+        modifyPropertyUserName.setText(bundle_1.getString("username_property"));
         }
 
     public void actionCheck(View v){
@@ -42,8 +44,10 @@ public class ModifyPropertyActivity extends AppCompatActivity {
                         DatabaseHelperProperty.PROPERTY_TABLE +
                         " set " + DatabaseHelperProperty.PROPERTY_NAME +
                         "='" + modifyPropertyName.getText().toString() + "', " +
-                        DatabaseHelperProperty.PROPERTY_CONTENT + "='" +
-                        modifyPropertyContent.getText().toString() +"' " +
+                        DatabaseHelperProperty.PROPERTY_CONTENT +
+                        "='" + modifyPropertyContent.getText().toString() + "', " +
+                        DatabaseHelperProperty.PROPERTY_USERNAME + "='" +
+                        modifyPropertyUserName.getText().toString() +"' " +
                         "where " + DatabaseHelperProperty.PROPERTY_ID +
                         "=" + id;
                 propertyDatabase.execSQL(sqlUpdate);
@@ -52,6 +56,7 @@ public class ModifyPropertyActivity extends AppCompatActivity {
                 Toast.makeText(this, "Property Content Modified Successfully!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MainPropertyActivity.class));
                 break;
+
             case R.id.modifyDeleteButton:
                 propertyDatabase = new DatabaseHelperProperty(this).getWritableDatabase();
                 String sqlDelete = "delete from " +
@@ -63,6 +68,7 @@ public class ModifyPropertyActivity extends AppCompatActivity {
                 Toast.makeText(this, "Delete Successful!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MainPropertyActivity.class));
                 break;
+
             case R.id.modifyBackToContentButton:
                 startActivity(new Intent(this, AddPropertyActivity.class));
                 break;

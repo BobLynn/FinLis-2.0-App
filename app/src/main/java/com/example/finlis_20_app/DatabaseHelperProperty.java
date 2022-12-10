@@ -7,11 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelperProperty extends SQLiteOpenHelper {
 
     static final String DatabaseName = "FinLisPropertyDatabase";
-    static final int DatabaseVersion = 3;
+    static final int DatabaseVersion = 4;
     static final String PROPERTY_TABLE = "property";
     static final String PROPERTY_ID = "id";
     static final String PROPERTY_NAME = "name";
     static final String PROPERTY_CONTENT = "content";
+    static final String PROPERTY_USERNAME = "username_property";
 
     public DatabaseHelperProperty(Context context) {
         super(context, DatabaseName, null, DatabaseVersion);
@@ -24,7 +25,7 @@ public class DatabaseHelperProperty extends SQLiteOpenHelper {
         String sql = "create table " + PROPERTY_TABLE + " ( "
                 + PROPERTY_ID + " integer primary key autoincrement, "
                 + PROPERTY_NAME + " text, "
-                + PROPERTY_CONTENT + " text )";
+                + PROPERTY_CONTENT + " text, " + PROPERTY_USERNAME + " text )";
         propertyDatabase.execSQL(sql);
     }
 

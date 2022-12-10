@@ -75,6 +75,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/modifytextViewPropertyContent" />
 
+    <TextView
+        android:id="@+id/modifytextViewUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="User Name:"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modifyPropertyContent" />
+
+    <EditText
+        android:id="@+id/modifyPropertyUserName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modifytextViewUserName" />
+
     <Button
         android:id="@+id/modifyModifyButton"
         android:layout_width="0dp"
@@ -88,7 +115,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modifyPropertyContent" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyPropertyUserName" />
 
     <Button
         android:id="@+id/modifyDeleteButton"

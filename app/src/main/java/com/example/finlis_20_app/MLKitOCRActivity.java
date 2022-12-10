@@ -9,6 +9,9 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -60,7 +63,6 @@ public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickL
     Button backToMainButton;
     TextView resultTextView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +84,6 @@ public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickL
 
         backToMainButton = findViewById(R.id.backToMainButton);
         backToMainButton.setOnClickListener(this);
-
     }
 
     @Override
@@ -96,6 +97,10 @@ public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickL
 //                break;
 
             case R.id.copyTextButton:
+                String scanned_text = resultTextView.getText().toString();
+                copyToClipboard(scanned_text);
+                startActivity(new Intent(this, AddPropertyActivity.class));
+
 
                 break;
 
@@ -131,7 +136,7 @@ public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickL
         Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(camera, CAMERA_REQUEST_CODE);
     }
-    //拍照後顯示相片
+    //拍照後顯示相片以及辨識文字
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -176,24 +181,21 @@ public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickL
             TextRecognizer recognizer =
                     TextRecognition.getClient(new ChineseTextRecognizerOptions.Builder().build());
 
-
-
-
             InputImage MLKITimage = InputImage.fromBitmap(image, 0);
-
 
             Task<Text> OCRresult = recognizer.process(MLKITimage);
 
             OCRresult.addOnSuccessListener(new OnSuccessListener<Text>() {
                         @Override
                         public void onSuccess(Text visionText) {
-                            String s = visionText.getText();
-                            resultTextView.setText(s);
+                            String resultText = visionText.getText();
+                            resultTextView.setText(resultText);
 
                             // Task completed successfully
                             // ...
                         }
                     });
+
             OCRresult.addOnFailureListener(
                     new OnFailureListener() {
                         @Override
@@ -203,9 +205,28 @@ public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickL
                         }
                     });
 
+
+
         }
     }
 
+
+
+    private void copyToClipboard(String text){
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Data copied!", text);
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(this,"Copied to clipboard ;)", Toast.LENGTH_SHORT).show();
+    }
+
+    private void readAccountName(){
+
+    }
+
+
+
+
+    //轉正照片副函式（尚未作用於App）
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 0);
@@ -213,9 +234,6 @@ public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickL
         ORIENTATIONS.append(Surface.ROTATION_180, 180);
         ORIENTATIONS.append(Surface.ROTATION_270, 270);
     }
-
-
-
     /**
      * Get the angle by which an image must be rotated given the device's current
      * orientation.

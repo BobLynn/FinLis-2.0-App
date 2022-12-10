@@ -3,6 +3,7 @@ package com.example.finlis_20_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import io.grpc.internal.SharedResourceHolder;
 
 public class LoginAccountActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -77,6 +80,11 @@ public class LoginAccountActivity extends AppCompatActivity implements View.OnCl
                         if(loginUsername.getText().toString().equals(readUsername) && loginPassword.getText().toString().equals(readPassword)){
                             Toast.makeText(LoginAccountActivity.this,"Login Successful!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginAccountActivity.this, MainActivity.class));
+
+                            //將目前登入資料寫入SharedPreferences
+                            String saveUsername = loginUsername.getText().toString();
+                            SharedPreferences pref = getSharedPreferences("userdata", MODE_PRIVATE);
+                            pref.edit().putString("USER", saveUsername).commit();
                         }
                         else {
                             Toast.makeText(LoginAccountActivity.this,"Incorrect username or password!", Toast.LENGTH_SHORT).show();

@@ -14,9 +14,9 @@ import android.widget.Toast;
 
 public class AddPropertyActivity extends AppCompatActivity implements View.OnClickListener{
 
-    TextView propertyName, propertyContent;
-
+    TextView propertyName, propertyContent, propertyUserName;
     Button uploadDataButton;
+    Button pasteUserName;
     Button toPropertyContentListButton;
     Button toMainMenuButton;
 
@@ -25,17 +25,23 @@ public class AddPropertyActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_add);
 
-        propertyName = (TextView)findViewById(R.id.propertyName);
-        propertyContent = (TextView)findViewById(R.id.propertyContent);
+        propertyName = findViewById(R.id.propertyName);
+        propertyContent = findViewById(R.id.propertyContent);
+        propertyUserName = findViewById(R.id.propertyUserName);
 
-        uploadDataButton = (Button)findViewById(R.id.uploadDataButton);
+        uploadDataButton = findViewById(R.id.uploadDataButton);
         uploadDataButton.setOnClickListener(this);
 
-        toPropertyContentListButton  = (Button)findViewById(R.id.toPropertyContentListButton);
+        pasteUserName = findViewById(R.id.pasteUserName);
+        pasteUserName.setOnClickListener(this);
+
+        toPropertyContentListButton  = findViewById(R.id.toPropertyContentListButton);
         toPropertyContentListButton.setOnClickListener(this);
 
-        toMainMenuButton = (Button)findViewById(R.id.toMainMenuButton);
+        toMainMenuButton = findViewById(R.id.toMainMenuButton);
         toMainMenuButton.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -43,6 +49,12 @@ public class AddPropertyActivity extends AppCompatActivity implements View.OnCli
         switch (v.getId()){
             case R.id.uploadDataButton:
                 saveProperty();
+
+                break;
+
+            case R.id.pasteUserName:
+                String userid = getSharedPreferences("userdata", MODE_PRIVATE).getString("USER","");
+                propertyUserName.setText(userid);
                 break;
 
             case R.id.toPropertyContentListButton:
@@ -60,17 +72,22 @@ public class AddPropertyActivity extends AppCompatActivity implements View.OnCli
         SQLiteDatabase sqLiteDatabase = new DatabaseHelperProperty(this).getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        String i1 = propertyName.getText().toString().trim();
-        String i2 = propertyContent.getText().toString().trim();
+        String k1 = propertyName.getText().toString().trim();
+        String k2 = propertyContent.getText().toString().trim();
+        String k3 = propertyUserName.getText().toString().trim();
 
-        if(TextUtils.isEmpty(i1) || TextUtils.isEmpty(i2)) {
+        if(TextUtils.isEmpty(k1) || TextUtils.isEmpty(k2) || TextUtils.isEmpty(k3)) {
             Toast.makeText(this,"Fill the blanks!!", Toast.LENGTH_SHORT).show();
-        }else if (!TextUtils.isEmpty(i1) && !TextUtils.isEmpty(i2)){
+
+        }
+        else if (!TextUtils.isEmpty(k1) && !TextUtils.isEmpty(k2) && !TextUtils.isEmpty(k3)){
             values.put(DatabaseHelperProperty.PROPERTY_NAME, propertyName.getText().toString());
             values.put(DatabaseHelperProperty.PROPERTY_CONTENT, propertyContent.getText().toString());
+            values.put(DatabaseHelperProperty.PROPERTY_USERNAME, propertyUserName.getText().toString());
             sqLiteDatabase.insert(DatabaseHelperProperty.PROPERTY_TABLE.toString(), null, values);
             sqLiteDatabase.close();
             Toast.makeText(this, "Property Content Successfully Added! ", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, MainPropertyActivity.class));
         }
 
 

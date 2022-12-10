@@ -27,7 +27,8 @@ public class MainPropertyActivity extends AppCompatActivity {
         String sql = "select " +
                 DatabaseHelperProperty.PROPERTY_ID + " , " +
                 DatabaseHelperProperty.PROPERTY_NAME + " , " +
-                DatabaseHelperProperty.PROPERTY_CONTENT + " from " +
+                DatabaseHelperProperty.PROPERTY_CONTENT + " , " +
+                DatabaseHelperProperty.PROPERTY_USERNAME + " from " +
                 DatabaseHelperProperty.PROPERTY_TABLE;
 
         Cursor cursor = propertyDatabase.rawQuery(sql, null);
@@ -41,6 +42,7 @@ public class MainPropertyActivity extends AppCompatActivity {
                 map.put(DatabaseHelperProperty.PROPERTY_ID, cursor.getString(0));
                 map.put(DatabaseHelperProperty.PROPERTY_NAME, cursor.getString(1));
                 map.put(DatabaseHelperProperty.PROPERTY_CONTENT, cursor.getString(2));
+                map.put(DatabaseHelperProperty.PROPERTY_USERNAME, cursor.getString(3));
                 list.add(map);
                 cursor.moveToPrevious();
             }
@@ -48,9 +50,10 @@ public class MainPropertyActivity extends AppCompatActivity {
         cursor.close();
         propertyDatabase.close();
 
-        SimpleAdapter adapter = new SimpleAdapter(this, list, android.R.layout.simple_list_item_2,
-                new String[]{DatabaseHelperProperty.PROPERTY_NAME, DatabaseHelperProperty.PROPERTY_CONTENT},
+        SimpleAdapter adapter = new SimpleAdapter(this, list, android.R.layout.simple_expandable_list_item_2,
+                new String[]{DatabaseHelperProperty.PROPERTY_NAME, DatabaseHelperProperty.PROPERTY_CONTENT, DatabaseHelperProperty.PROPERTY_USERNAME},
                 new int[]{android.R.id.text1, android.R.id.text2});
+
 
         ListView listView = findViewById(R.id.propertyContentListView);
         listView.setAdapter(adapter);
@@ -62,6 +65,7 @@ public class MainPropertyActivity extends AppCompatActivity {
                 intent.putExtra("id", list.get(position).get(DatabaseHelperProperty.PROPERTY_ID));
                 intent.putExtra("name", list.get(position).get(DatabaseHelperProperty.PROPERTY_NAME));
                 intent.putExtra("content", list.get(position).get(DatabaseHelperProperty.PROPERTY_CONTENT));
+                intent.putExtra("username_property", list.get(position).get(DatabaseHelperProperty.PROPERTY_USERNAME));
                 intent.setClass(MainPropertyActivity.this, ModifyPropertyActivity.class);
                 startActivity(intent);
             }
