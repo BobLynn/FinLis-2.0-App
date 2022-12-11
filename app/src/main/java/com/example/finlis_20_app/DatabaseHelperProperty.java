@@ -18,9 +18,9 @@ public class DatabaseHelperProperty extends SQLiteOpenHelper {
         super(context, DatabaseName, null, DatabaseVersion);
     }
 
-    @Override
 
-//    切記：中間的字符一定在前面要有空格！！
+    //  切記：中間的字符一定在前面要有空格！！
+    @Override
     public void onCreate(SQLiteDatabase propertyDatabase) {
         String sql = "create table " + PROPERTY_TABLE + " ( "
                 + PROPERTY_ID + " integer primary key autoincrement, "
