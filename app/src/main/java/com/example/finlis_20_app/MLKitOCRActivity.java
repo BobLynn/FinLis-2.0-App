@@ -135,6 +135,8 @@ public class MLKitOCRActivity extends AppCompatActivity implements View.OnClickL
     private void openCamera() {
         Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(camera, CAMERA_REQUEST_CODE);
+
+
     }
     //拍照後顯示相片以及辨識文字
     @Override
