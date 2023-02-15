@@ -31,14 +31,13 @@ import java.util.Map;
 public class MySQLTestActivity extends AppCompatActivity {
 
     Context context = this;
+    Button btn1, btn2, btn3;
     EditText et1, et2, et3, et4;
+    TextView textview0, textview1, textview2, textview3, textview4;
     WebView webView;
-
     String url = "http://localhost:3000/";
-
     CookieManager cookieManager;
     String cookieStr, id_text;
-
     ListView LV1;
 
 
@@ -47,8 +46,7 @@ public class MySQLTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mysql_test);
 
-        //StrictMode是一款開發人員工具，可以檢測出可能意外執行的錯誤並給予顯示，以便開發者修復錯誤
-
+        //TODO:StrictMode是一款開發人員工具，可以檢測出可能意外執行的錯誤並給予顯示，以便開發者修復錯誤
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().
                 detectDiskReads().detectDiskWrites().detectNetwork().
                 penaltyLog().build());
@@ -59,12 +57,13 @@ public class MySQLTestActivity extends AppCompatActivity {
 
         Wcookie(context);
 
-        //時間處理器Handler, Runnable（下方副函式）對象名稱爲runTimerStop, postDelayed用來指定時間結束時執行Runnable之對象(runTimerStop)
+        //TODO:時間處理器Handler, Runnable（下方副函式）對象名稱爲runTimerStop, postDelayed用來指定時間結束時執行Runnable之對象(runTimerStop)
         Handler myHandler = new Handler();
-        myHandler.postDelayed(runTimerStop, 15000);
+        myHandler.postDelayed(runTimerStop, 15000);     //TODO:15秒
 
         if(cookieStr!=null){
-            myHandler.removeCallbacks(runTimerStop);        //removeCallbacks方法旨在刪除指定的Runnable對象，使執行緒對象停止運行
+        //TODO:removeCallbacks方法旨在刪除指定的Runnable對象，使執行緒對象停止運行
+            myHandler.removeCallbacks(runTimerStop);
         }
 
         LV1 = (ListView)findViewById(R.id.LV1);
@@ -72,42 +71,41 @@ public class MySQLTestActivity extends AppCompatActivity {
         et2 = (EditText)findViewById(R.id.et2);
         et3 = (EditText)findViewById(R.id.et3);
         et4 = (EditText)findViewById(R.id.et4);
+        btn1 = (Button) findViewById(R.id.btn1);
+        btn2 = (Button) findViewById(R.id.btn2);
+        btn3 = (Button) findViewById(R.id.btn3);
 
-        //新增資料
-        Button btn1 = (Button) findViewById(R.id.btn1);
-        Button btn2 = (Button) findViewById(R.id.btn2);
-        Button btn3 = (Button) findViewById(R.id.btn3);
-
+        //按鈕動作：新增資料
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String[] et0 = new String[]{et1.getText().toString(), et2.getText().toString(),
                         et3.getText().toString(), et4.getText().toString()};
-                InsertphpClass.inserting(et0, cookieStr, url);
+                //TODO:進入Class: InsertPhpClass
+                InsertPhpClass.inserting(et0, cookieStr, url);
                 select(null);
             }
         });
 
-        //選取資料（必須選取資料才能更新資料！！）
+        //TODO:選取資料（必須選取資料才能更新資料！！）
         LV1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick (AdapterView<?> parent,View view, int position, long id){
 
-                TextView te0 = (TextView) view.findViewById(R.id.text0);
-                id_text = te0.getText().toString();
+                textview0 = (TextView) view.findViewById(R.id.text0);
+                id_text = textview0.getText().toString();
 
-                TextView te1 = (TextView) view.findViewById(R.id.text1);
-                et1.setText(te1.getText());
+                textview1 = (TextView) view.findViewById(R.id.text1);
+                et1.setText(textview1.getText());
 
-                TextView te2 = (TextView) view.findViewById(R.id.text2);
-                et2.setText(te2.getText());
+                textview2 = (TextView) view.findViewById(R.id.text2);
+                et2.setText(textview2.getText());
 
-                TextView te3 = (TextView) view.findViewById(R.id.text3);
-                et3.setText(te3.getText());
+                textview3 = (TextView) view.findViewById(R.id.text3);
+                et3.setText(textview3.getText());
 
-                TextView te4 = (TextView) view.findViewById(R.id.text4);
-                et4.setText(te4.getText());
+                textview4 = (TextView) view.findViewById(R.id.text4);
+                et4.setText(textview4.getText());
 
             }
         });
@@ -119,7 +117,8 @@ public class MySQLTestActivity extends AppCompatActivity {
                 String[] et0 = new String[] {id_text, et1.getText().toString(), et2.getText().toString(),
                         et3.getText().toString(),et4.getText().toString()};
 
-                UpphpClass.updating(et0, cookieStr, url);
+                //TODO:進入Class: UpdatePhpClass
+                UpdatePhpClass.updating(et0, cookieStr, url);
                 select(null);
 
             }
@@ -130,7 +129,9 @@ public class MySQLTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String[] et0 = new String[] {id_text};
-                DelphpClass.deleting(et0, cookieStr, url);
+
+                //TODO:進入Class: DeletePhpClass
+                DeletePhpClass.deleting(et0, cookieStr, url);
                 select(null);
             }
         });
@@ -138,6 +139,7 @@ public class MySQLTestActivity extends AppCompatActivity {
 
     }
 
+    //Wcookies
     @SuppressLint("SetJavaScriptEnabled")
     private void Wcookie(Context context) {
         CookieSyncManager.createInstance(context);
@@ -167,10 +169,10 @@ public class MySQLTestActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-            //顯示資料文法：
-            //select(null)
-            //null爲查詢值
-            //不一定要此寫法，請配合網頁POST或者GET內容做對應
+        //TODO:顯示資料文法：
+        // select(null)
+        // null爲查詢值
+        // 不一定要此寫法，請配合網頁POST或者GET內容做對應
             select(null);
         }
     };
@@ -191,7 +193,7 @@ public class MySQLTestActivity extends AppCompatActivity {
                 item.put("content1", jsonData.getString("content1"));
                 item.put("content2", jsonData.getString("content2"));
                 item.put("content3", jsonData.getString("content3"));
-                items.add(item);        //新增到items
+                items.add(item);        //TODO:新增到items
             }
             SimpleAdapter SA = new SimpleAdapter(context, items, R.layout.list_text,
                     new String[]{"id", "name", "content1", "content2", "content3", "content4"},

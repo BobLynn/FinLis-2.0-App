@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import io.grpc.internal.SharedResourceHolder;
-
 public class LoginAccountActivity extends AppCompatActivity implements View.OnClickListener{
 
     EditText loginUsername;
@@ -25,6 +23,7 @@ public class LoginAccountActivity extends AppCompatActivity implements View.OnCl
     Button accountmainButton;
     TextView tvToRegister;
     Button toMainMenuButton;
+    Button toMySQLButton;
 
 
     @Override
@@ -51,6 +50,10 @@ public class LoginAccountActivity extends AppCompatActivity implements View.OnCl
 //        到主畫面按鈕
         toMainMenuButton = (Button) findViewById(R.id.toMainMenuButton);
         toMainMenuButton.setOnClickListener(this);
+
+//        MySQL測試界面按鈕
+        toMySQLButton = (Button)findViewById(R.id.toMySQLButton);
+        toMySQLButton.setOnClickListener(this);
     }
 
 //    按鈕效果副函式
@@ -94,18 +97,30 @@ public class LoginAccountActivity extends AppCompatActivity implements View.OnCl
 
                 break;
 
+            //(TextView)進入註冊界面按鈕
             case R.id.tvToRegister:
                 startActivity(new Intent(this, RegisterAccountActivity.class));
+                Toast.makeText(this, "Insert ID and PW to finish registration!!", Toast.LENGTH_SHORT).show();
                 break;
 
+            //(Button)進入賬戶資料庫界面按鈕
             case R.id.accountmainButton:
                 startActivity(new Intent(this, MainAccountActivity.class));
                 Toast.makeText(this, "Magic in the air!", Toast.LENGTH_SHORT).show();
                 break;
 
+            //(Button)進入主畫面按鈕
             case R.id.toMainMenuButton:
                 startActivity(new Intent(this, MainActivity.class));
                 Toast.makeText(this, "Magic in the air!", Toast.LENGTH_SHORT).show();
+                break;
+
+            //(Buuton)進入MySQL測試界面按鈕
+            case R.id.toMySQLButton:
+                startActivity(new Intent(this, MySQLTestActivity.class));
+                Toast.makeText(this, "Magic in the air!", Toast.LENGTH_SHORT).show();
+                break;
+
         }
     }
 }

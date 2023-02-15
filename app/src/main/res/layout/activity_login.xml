@@ -109,4 +109,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/accountmainButton" />
 
+    <Button
+        android:id="@+id/toMySQLButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#B00020"
+        android:text="mysql test page"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toMainMenuButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

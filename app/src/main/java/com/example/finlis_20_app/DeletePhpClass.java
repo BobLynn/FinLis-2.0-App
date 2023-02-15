@@ -11,15 +11,16 @@ import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.protocol
 
 import java.util.ArrayList;
 
-public class DelphpClass {
+public class DeletePhpClass {
 
     private static HttpClient hC;
     private static HttpPost hP;
 
     public static void deleting (String[] i,String Wcook, String url) {
+
         try {
             hC = new DefaultHttpClient();
-            hP = new HttpPost(url + "/del_text1.php");
+            hP = new HttpPost(url + "/Delete_text1.php");
             System.out.println("是否取得cookie = " + Wcook);
             hP.addHeader("Cookie", Wcook +
                     ";expires = Mon, 02-Feb-112 17:18:19 GMT; path = / ");
